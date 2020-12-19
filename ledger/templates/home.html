@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %} Bachat - Home {% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand">
+        {{ navbar_title }}
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <style>
+                .nav_link{
+                    text-decoration: none;
+                    color: azure;
+                    padding-left: 2rem;
+                }
+                .nav_link:hover{
+                    text-decoration: none;
+                    color: red;
+                    cursor: pointer;
+                }
+                
+            </style>
+            {% for nav in nav_items %}
+                <li class="nav-item active">
+                    <span
+                        href=" {{ nav.url }}"                       
+                        onclick="appendForm(this)"
+                        class="nav_link"
+                    ><span style="text-decoration: none;">{{ nav.title }}</span></span>
+                </li>
+                    <!--    
+                        data-toggle="modal" 
+                        data-target="#exampleModalCenter" 
+                    -->
+            {% endfor %}
+        </ul>
+        <!-- <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> -->
+    </div>
+</nav>
+
+<main role="main">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container" id="mainContent">
+            <h1 class="display-3">General Statistics</h1>
+            <div class="row">
+                {% for chart_info in charts_info %}
+                    <div class="col-sm-6">
+                        <p>{{chart_info.title}}</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>{{chart_info.number}}</p>
+                    </div>                    
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+
+    <footer 
+        class="container-fluid" 
+        style="position: fixed; bottom: 0; justify-content: space-between;"
+    >
+    <div class="d-flex justify-content-center p-2 text-white bg-dark">
+        <p>&copy; Bachat 2020-2024</p>
+    </div>
+</footer>
+
+{% endblock %}
+
+{% block custom_javascript %}
+<script>
+    function appendForm(e) {
+        e.preventDefault;
+        let url = e.getAttribute('href');
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: false,
+            data: {},
+            success: function(res){
+                $('#mainContent').html(res);
+                // $('.modal-body').html(res);
+                // $('#empModal').modal('show');
+            },
+            fail: function(err) {
+                console.log(err);
+            }
+        })
+    }
+</script>
+{% endblock %}

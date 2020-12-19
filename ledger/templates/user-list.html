@@ -1,0 +1,23 @@
+{% block content %}
+<table border="1">
+    <thead>
+        <tr>
+            <th>Consumer ID</th>
+            <th>Name</th>
+            <th>Total Savings</th>
+            <th>Credit Remaining</th>
+        </tr>
+    </thead>
+<tbody>
+        {% for obj in object_list %}
+        <tr>
+            <td>{{ obj.consumer_id }}</td>
+            <td>{{ obj.preferred_name }} </td>
+            <td>{{ obj.total_savings }}</td>
+            <td>{{ obj.credit_remaining }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+<table class="table table-bordered">
+    <thead>
+      <tr>
+          {% for head in headers %}
+            <th> {{ head }}</th>
+          {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in object_list %}
+        <tr>
+            <td>{{ data.person.id }}</td>
+            <td>{{ data.person }}</td>
+            <td>{{ data.amount }}</td>
+            <td>{{ data.month }}</td>
+            <td>{{ data.remark }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+            {{ modal_title }}
+        </h5>
+        </div>
+        <div class="modal-body">
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Person</th>
+                    <th>Amount</th>
+                    <th>Remarks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for data in object_list %}
+                    <tr>
+                      <td>{{ data.person }}</td>
+                      <td>{{ data.amount }}</td>
+                      <td>{{ data.remark }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Submit</button>
+        </div>
+    </div>
+    </div>
+</div> -->
